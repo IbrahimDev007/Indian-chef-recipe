@@ -4,15 +4,18 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Registration = () => {
 	const [username, setUsername] = useState("");
+	const [photoUrl, setPhotoUrl] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [error, setError] = useState("");
+	const { createUser, updateUserData } = useContext(AuthContext);
+	const handleSubmit = (event) => {
+		event.preventDefault();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
 		setError("");
 		// perform form validation and submission
+
 		if (password !== confirmPassword) {
 			setError("Passwords do not match");
 			return;
@@ -22,17 +25,26 @@ const Registration = () => {
 			return;
 		} else {
 			setError("");
+
+			createUser(email, password)
+				.then((result) => {
+					updateUserData(result.user, username, photoUrl)
+						.then(console.log("user update"))
+						.catch((err) => console.log(err.message));
+				})
+				.catch((err) => console.log(err.message));
+			event.target.reset();
+
 			// perform form submission
 		}
 	};
-	const userInfo = useContext(AuthContext);
 
 	return (
-		<div className="min-h-screen bg-gray-100 flex items-center justify-center w-4/6">
-			<div className="bg-white p-6 w-[40%] rounded shadow-md flex items-center flex-col">
+		<div className="min-h-screen bg-gray-100 flex items-center justify-center w-4/6 ">
+			<div className="bg-white p-6 w-[40%] rounded shadow-md flex items-center flex-col mt-4">
 				<h2 className="text-2xl font-bold mb-4">Register</h2>
 
-				<form onSubmit={handleSubmit} className="w-8/12">
+				<form onSubmit={(e) => handleSubmit(e)} className="w-8/12">
 					<div className="mb-4">
 						<label
 							className="block text-gray-700 font-bold mb-2"
@@ -46,6 +58,22 @@ const Registration = () => {
 							placeholder="Enter your username"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</div>
+					<div className="mb-4">
+						<label
+							className="block text-gray-700 font-bold mb-2"
+							htmlFor="photoUrl"
+						>
+							photoUrl
+						</label>
+						<input
+							className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							type="text"
+							placeholder="Enter your photoUrl"
+							value={photoUrl}
+							onChange={(e) => setPhotoUrl(e.target.value)}
 							required
 						/>
 					</div>

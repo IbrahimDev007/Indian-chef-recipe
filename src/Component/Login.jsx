@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const { googleLogin, setUser } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const { googleLogin, setUser, login } = useContext(AuthContext);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log("Submitted:", email, password);
+		login(email, password)
+			.then(() => {
+				navigate("/");
+			})
+			.catch((err) => console.log(err.message));
 		// You can perform additional actions here, such as sending a login request to a server
 	};
 	const handleGoogleLogin = () => {

@@ -7,7 +7,7 @@ const Layout = () => {
 		<div>
 			<Hader />
 			<div
-				className="flex flex-col items-center
+				className="flex flex-col items-center 
             "
 			>
 				<Outlet />
