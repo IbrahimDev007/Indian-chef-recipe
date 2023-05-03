@@ -12,7 +12,7 @@ const Login = () => {
 		event.preventDefault();
 		login(email, password)
 			.then(() => {
-				navigate("/");
+				// navigate("/");
 			})
 			.catch((err) => console.log(err.message));
 		// You can perform additional actions here, such as sending a login request to a server

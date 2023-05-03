@@ -5,6 +5,7 @@ import Home from "../Component/Home";
 import Login from "../Component/Login";
 import Registration from "../Component/Registration";
 import Layout from "../Layout/Layout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
 	{
@@ -17,10 +18,7 @@ const router = createBrowserRouter([
 				element: <Home />,
 				loader: () => fetch("http://localhost:5000"),
 			},
-			{
-				path: "/home",
-				element: <Home />,
-			},
+
 			{
 				path: "/login",
 				element: <Login />,
@@ -37,7 +35,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/chef/:id",
-		element: <ChiefPage />,
+		element: (
+			<PrivateRoute>
+				<ChiefPage />
+			</PrivateRoute>
+		),
 		loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`),
 	},
 ]);
