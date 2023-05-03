@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../Component/Blog";
+import ChiefPage from "../Component/ChiefPage";
 import Home from "../Component/Home";
 import Login from "../Component/Login";
 import Registration from "../Component/Registration";
@@ -9,11 +10,12 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Layout />,
-		loader: () => fetch("http://localhost:5000"),
+
 		children: [
 			{
 				path: "/",
 				element: <Home />,
+				loader: () => fetch("http://localhost:5000"),
 			},
 			{
 				path: "/home",
@@ -32,6 +34,11 @@ const router = createBrowserRouter([
 				element: <Blog />,
 			},
 		],
+	},
+	{
+		path: "/chef/:id",
+		element: <ChiefPage />,
+		loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`),
 	},
 ]);
 
