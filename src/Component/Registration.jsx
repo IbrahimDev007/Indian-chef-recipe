@@ -32,11 +32,11 @@ const Registration = () => {
 						.then(console.log("user update"))
 						.catch((err) => console.log(err.message));
 				})
-				.catch((err) => console.log(err.message));
-			event.target.reset();
+				.catch((err) => setError(err.message));
 
 			// perform form submission
 		}
+		event.target.reset();
 	};
 
 	return (
@@ -44,7 +44,7 @@ const Registration = () => {
 			<div className="bg-white p-6 w-[40%] rounded shadow-md flex items-center flex-col mt-4">
 				<h2 className="text-2xl font-bold mb-4">Register</h2>
 
-				<form onSubmit={(e) => handleSubmit(e)} className="w-8/12">
+				<form onSubmit={handleSubmit} className="w-8/12">
 					<div className="mb-4">
 						<label
 							className="block text-gray-700 font-bold mb-2"

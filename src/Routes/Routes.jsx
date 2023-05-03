@@ -9,6 +9,7 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Layout />,
+		loader: () => fetch("http://localhost:5000"),
 		children: [
 			{
 				path: "/",
