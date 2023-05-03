@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
 		return signOut(auth);
 	};
 
-	const login = () => {
+	const login = (email, password) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};

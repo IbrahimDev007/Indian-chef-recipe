@@ -32,7 +32,7 @@ const Hader = () => {
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
 					<li>
-						<NavLink to={"/home"}>Home</NavLink>
+						<NavLink to={"/"}>Home</NavLink>
 					</li>
 					<li tabIndex={0}>
 						<NavLink to={"/blog"}>blog</NavLink>
@@ -51,7 +51,7 @@ const Hader = () => {
 						<h3 className="btn btn-outline btn-success mx-2">{user}</h3>
 						<NavLink
 							className="btn btn-outline btn-primary"
-							to="/home"
+							to="/"
 							onClick={() => logOut()}
 						>
 							Sign Out

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
@@ -12,15 +12,19 @@ const Login = () => {
 		event.preventDefault();
 		login(email, password)
 			.then(() => {
-				// navigate("/");
+				<Navigate to="/blog"></Navigate>;
 			})
 			.catch((err) => console.log(err.message));
+
+		event.target.reset();
+
 		// You can perform additional actions here, such as sending a login request to a server
 	};
 	const handleGoogleLogin = () => {
 		googleLogin()
 			.then((result) => {
 				setUser(result.user.displayName);
+				navigate("/");
 			})
 			.catch((err) => {
 				console.log(err);
