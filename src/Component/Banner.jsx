@@ -1,5 +1,5 @@
 import React from "react";
-
+import LazyLoad from "react-lazy-load";
 const Banner = () => {
 	return (
 		<div
@@ -9,10 +9,13 @@ const Banner = () => {
 			}}
 		>
 			<div className="hero-content flex-col lg:flex-row-reverse  px-4">
-				<img
-					src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600"
-					className="max-w-sm rounded-lg shadow-2xl"
-				/>
+				<LazyLoad>
+					<img
+						src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600"
+						className="max-w-sm rounded-lg shadow-2xl"
+					/>
+				</LazyLoad>
+				;
 				<div>
 					<h1 className="text-3xl font-bold">
 						Explore Delicious Recipes by Top Chefs
