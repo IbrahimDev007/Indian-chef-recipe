@@ -1,11 +1,33 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import AboutUs from "./about";
 import Banner from "./Banner";
 import ContactUs from "./ContuctUs";
-import Slider from "./Slider";
+import Loader from "./Loader";
+// import Slider from "./Slider";
 
 const Home = () => {
-	const chiefs = useLoaderData();
+	const [chiefs, setChiefs] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		// Fetch chiefs here
+		fetch("http://localhost:5000")
+			.then((response) => response.json())
+			.then((chiefs) => {
+				setChiefs(chiefs);
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.error(error);
+				setLoading(false);
+			});
+	}, []);
+
+	if (loading) {
+		return <Loader />;
+	}
+
 	console.log(chiefs);
 	return (
 		<div>
@@ -30,8 +52,8 @@ const Home = () => {
 					</div>
 				))}
 			</div>
-			<div className="h-100 w-100 flex justify-center items-center">
-				<Slider />
+			<div className="my-4">
+				<AboutUs />
 			</div>
 
 			<ContactUs />
