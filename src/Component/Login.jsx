@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
-	const { googleLogin, setUser, login } = useContext(AuthContext);
+	const { googleLogin, setUser, login, SignInWithGithub } =
+		useContext(AuthContext);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -23,7 +24,17 @@ const Login = () => {
 	const handleGoogleLogin = () => {
 		googleLogin()
 			.then((result) => {
-				setUser(result.user.displayName);
+				setUser(result.user);
+				navigate("/");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+	const handleGithubLogin = () => {
+		SignInWithGithub()
+			.then((result) => {
+				setUser(result.user);
 				navigate("/");
 			})
 			.catch((err) => {
@@ -58,13 +69,18 @@ const Login = () => {
 						Password
 					</label>
 					<input
-						className="shadow appearance-none border border-green-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline  "
+						className="shadow appearance-none border border-green-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline  "
 						id="password"
 						type="password"
 						placeholder="Password"
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
 					/>
+				</div>
+				<div>
+					<Link to="/signup" className="text-sm text-blue-700">
+						Click the link if you donot register
+					</Link>
 				</div>
 				<div className="flex items-center justify-between">
 					<button
@@ -76,12 +92,20 @@ const Login = () => {
 					</button>
 				</div>
 			</form>
-			<button
-				className="btn btn-primary bg-green-500"
-				onClick={handleGoogleLogin}
-			>
-				Google Login
-			</button>
+			<div className="flex">
+				<button
+					className="btn btn-primary bg-green-500"
+					onClick={handleGoogleLogin}
+				>
+					Google Login
+				</button>
+				<button
+					className="btn btn-primary mx-3 bg-green-400"
+					onClick={handleGithubLogin}
+				>
+					Github Login
+				</button>
+			</div>
 		</div>
 	);
 };

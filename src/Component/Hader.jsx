@@ -48,7 +48,7 @@ const Hader = () => {
 					</ul>
 				</div>
 				<NavLink to="/" className="btn btn-ghost normal-case text-xl">
-					Indian Chef Hunter
+					Indian Chef Recipie
 				</NavLink>
 			</div>
 			<div className="navbar-center hidden lg:flex">

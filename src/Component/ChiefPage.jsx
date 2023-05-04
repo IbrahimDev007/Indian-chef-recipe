@@ -9,7 +9,7 @@ import Footer from "./Footer";
 const ChiefPage = () => {
 	const chiefdetails = useLoaderData();
 	// const Recipies = chiefdetails.recipes;
-	const [disable, setDisable] = useState(false);
+
 	const [Recipies, setRecipies] = useState(chiefdetails.recipes);
 
 	const handleDisable = (id, name) => {
@@ -58,13 +58,13 @@ const ChiefPage = () => {
 						</div>
 					}
 				</div>
-				<div className="grid gap-2  grid-cols-3">
+				<div className="grid gap-2  grid-cols-1">
 					{Recipies.map((recipie) => (
 						<div
 							className="card card-side bg-base-100 shadow-xl"
 							key={recipie.id}
 						>
-							<figure>
+							<figure className="">
 								<img src={recipie.image} alt={Recipies.name} />
 							</figure>
 							<div className="card-body">

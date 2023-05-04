@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 // import { Input, Button, Card, Form, Alert } from "daisyui";
 
@@ -15,7 +16,10 @@ const Registration = () => {
 
 		setError("");
 		// perform form validation and submission
-
+		if (password.length < 6) {
+			setError("Passwords less then 6 character");
+			return;
+		}
 		if (password !== confirmPassword) {
 			setError("Passwords do not match");
 			return;
@@ -124,6 +128,11 @@ const Registration = () => {
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							required
 						/>
+						<div>
+							<Link to="/login" className="text-sm text-blue-700">
+								Click If You Have Already Account
+							</Link>
+						</div>
 					</div>
 					<div className="flex justify-center">
 						<button
