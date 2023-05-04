@@ -32,16 +32,36 @@ const Hader = () => {
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
 					<li>
-						<NavLink to={"/"}>Home</NavLink>
+						<NavLink
+							to={"/"}
+							className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+						>
+							Home
+						</NavLink>
 					</li>
 					<li tabIndex={0}>
-						<NavLink to={"/blog"}>blog</NavLink>
+						<NavLink
+							to={"/blog"}
+							className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+						>
+							blog
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to={"/login"}>Login</NavLink>
+						<NavLink
+							to={"/login"}
+							className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+						>
+							Login
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to={"/signup"}>Registration</NavLink>
+						<NavLink
+							to={"/signup"}
+							className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+						>
+							Registration
+						</NavLink>
 					</li>
 				</ul>
 			</div>

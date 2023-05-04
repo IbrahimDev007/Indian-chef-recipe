@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaHeart } from "react-icons/fa";
 
 const ChiefPage = () => {
 	const chiefdetails = useLoaderData();
@@ -9,13 +10,13 @@ const ChiefPage = () => {
 	const [disable, setDisable] = useState(false);
 	const [Recipies, setRecipies] = useState(chiefdetails.recipes);
 
-	const handleDisable = (id) => {
+	const handleDisable = (id, name) => {
 		setRecipies((prevRecipies) =>
 			prevRecipies.map((item) =>
 				item.id === id ? { ...item, IsDisable: true } : item
 			)
 		);
-		toast("Wow so easy!");
+		toast(`Wow ${name} is now Favorite`);
 	};
 
 	return (
@@ -71,11 +72,11 @@ const ChiefPage = () => {
 							<p className="text-red-600">Ratting: {recipie.rating}</p>
 							<div className="card-actions justify-end">
 								<button
-									className="btn btn-primary"
-									onClick={() => handleDisable(recipie.id, recipie)}
+									className="btn btn-outline text-red-500"
+									onClick={() => handleDisable(recipie.id, recipie.name)}
 									disabled={recipie.IsDisable}
 								>
-									Favourite
+									<FaHeart />
 								</button>
 							</div>
 						</div>

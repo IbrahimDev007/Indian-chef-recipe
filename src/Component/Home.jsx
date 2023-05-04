@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Banner from "./Banner";
 
 const Home = () => {
 	const chiefs = useLoaderData();
 	console.log(chiefs);
 	return (
 		<div>
-			<h1>chief data</h1>
+			<Banner />
 			<div className="grid gap-2  grid-cols-3">
 				{chiefs.map((chief, index) => (
 					<div className="card card-side bg-base-100 shadow-xl">
