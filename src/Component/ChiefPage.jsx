@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChiefPage = () => {
 	const chiefdetails = useLoaderData();
-	const Recipies = chiefdetails.recipes;
+	// const Recipies = chiefdetails.recipes;
 	const [disable, setDisable] = useState(false);
+	const [Recipies, setRecipies] = useState(chiefdetails.recipes);
 
-	console.log(Recipies);
+	const handleDisable = (id) => {
+		setRecipies((prevRecipies) =>
+			prevRecipies.map((item) =>
+				item.id === id ? { ...item, IsDisable: true } : item
+			)
+		);
+		toast("Wow so easy!");
+	};
 
 	return (
 		<div className=" block">
@@ -42,8 +52,11 @@ const ChiefPage = () => {
 				}
 			</div>
 			<div className="grid gap-2  grid-cols-3">
-				{Recipies.map((recipie, index) => (
-					<div className="card card-side bg-base-100 shadow-xl" key={index}>
+				{Recipies.map((recipie) => (
+					<div
+						className="card card-side bg-base-100 shadow-xl"
+						key={recipie.id}
+					>
 						<figure>
 							<img src={recipie.image} alt={Recipies.name} />
 						</figure>
@@ -59,8 +72,8 @@ const ChiefPage = () => {
 							<div className="card-actions justify-end">
 								<button
 									className="btn btn-primary"
-									onClick={() => setDisable(!disable)}
-									disabled={disable}
+									onClick={() => handleDisable(recipie.id, recipie)}
+									disabled={recipie.IsDisable}
 								>
 									Favourite
 								</button>
