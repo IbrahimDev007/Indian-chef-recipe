@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
+import ContactUs from "./ContuctUs";
 
 const Home = () => {
 	const chiefs = useLoaderData();
@@ -28,6 +29,7 @@ const Home = () => {
 					</div>
 				))}
 			</div>
+			<ContactUs />
 		</div>
 	);
 };
