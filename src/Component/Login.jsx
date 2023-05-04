@@ -1,19 +1,22 @@
 import React, { useContext, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/";
 	const { googleLogin, setUser, login, SignInWithGithub } =
 		useContext(AuthContext);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		login(email, password)
-			.then(() => {
-				<Navigate to="/blog"></Navigate>;
+			.then((result) => {
+				console.log(result.user);
+				navigate(from, { replace: true });
 			})
 			.catch((err) => console.log(err.message));
 
@@ -25,7 +28,7 @@ const Login = () => {
 		googleLogin()
 			.then((result) => {
 				setUser(result.user);
-				navigate("/");
+				navigate(from, { replace: true });
 			})
 			.catch((err) => {
 				console.log(err);
@@ -35,7 +38,7 @@ const Login = () => {
 		SignInWithGithub()
 			.then((result) => {
 				setUser(result.user);
-				navigate("/");
+				navigate(from, { replace: true });
 			})
 			.catch((err) => {
 				console.log(err);

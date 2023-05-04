@@ -41,7 +41,8 @@ const router = createBrowserRouter([
 				<ChiefPage />
 			</PrivateRoute>
 		),
-		loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`),
+		loader: ({ params }) =>
+			fetch(`https://backend-ibrahimdev007.vercel.app/chef/${params.id}`),
 		errorElement: <ErrorPage />,
 	},
 	// {

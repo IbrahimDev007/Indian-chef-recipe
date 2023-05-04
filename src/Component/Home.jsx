@@ -12,7 +12,7 @@ const Home = () => {
 
 	useEffect(() => {
 		// Fetch chiefs here
-		fetch("http://localhost:5000")
+		fetch("https://backend-ibrahimdev007.vercel.app")
 			.then((response) => response.json())
 			.then((chiefs) => {
 				setChiefs(chiefs);
