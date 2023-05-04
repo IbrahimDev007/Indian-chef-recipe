@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ChiefPage = () => {
 	const chiefdetails = useLoaderData();
 	const Recipies = chiefdetails.recipes;
+	const [disable, setDisable] = useState(false);
 
 	console.log(Recipies);
 
@@ -56,7 +57,11 @@ const ChiefPage = () => {
 							<p className="py-2">{recipie.method}</p>
 							<p className="text-red-600">Ratting: {recipie.rating}</p>
 							<div className="card-actions justify-end">
-								<button className="btn btn-primary" disabled>
+								<button
+									className="btn btn-primary"
+									onClick={() => setDisable(!disable)}
+									disabled={disable}
+								>
 									Favourite
 								</button>
 							</div>
