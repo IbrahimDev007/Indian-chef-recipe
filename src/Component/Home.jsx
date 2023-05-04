@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import ContactUs from "./ContuctUs";
+import Slider from "./Slider";
 
 const Home = () => {
 	const chiefs = useLoaderData();
@@ -29,6 +30,10 @@ const Home = () => {
 					</div>
 				))}
 			</div>
+			<div className="h-100 w-100 flex justify-center items-center">
+				<Slider />
+			</div>
+
 			<ContactUs />
 		</div>
 	);
