@@ -21,8 +21,8 @@ const AuthProvider = ({ children }) => {
 		const unsubscribe = () => {
 			onAuthStateChanged(auth, (result) => {
 				if (result) {
-					setUser(result.displayName);
-					console.log(result.displayName);
+					setUser(result);
+					console.log(result);
 					setLoading(false);
 				} else {
 					setUser(null);
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
 	const updateUserData = (user, name, profileImg) => {
 		return updateProfile(user, {
 			displayName: name,
-			image: profileImg,
+			photoURL: profileImg,
 		});
 	};
 
@@ -66,6 +66,7 @@ const AuthProvider = ({ children }) => {
 		setUser,
 		googleLogin,
 		updateUserData,
+		loading,
 	};
 
 	return (

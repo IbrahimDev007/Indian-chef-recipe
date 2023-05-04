@@ -10,7 +10,7 @@ const Home = () => {
 			<Banner />
 			<div className="grid gap-2  grid-cols-3">
 				{chiefs.map((chief, index) => (
-					<div className="card card-side bg-base-100 shadow-xl">
+					<div className="card card-side bg-base-100 shadow-xl" key={index}>
 						<figure>
 							<img src={chief.picture} alt={chief.name} />
 						</figure>

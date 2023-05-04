@@ -14,20 +14,42 @@ const Hader = () => {
 						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li>
-							<NavLink to={"/"}>Home</NavLink>
+							<NavLink
+								to={"/"}
+								className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+							>
+								Home
+							</NavLink>
 						</li>
 						<li tabIndex={0}>
-							<NavLink to={"/blog"}>blog</NavLink>
+							<NavLink
+								to={"/blog"}
+								className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+							>
+								blog
+							</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/login"}>Login</NavLink>
+							<NavLink
+								to={"/login"}
+								className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+							>
+								Login
+							</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/signup"}>Registration</NavLink>
+							<NavLink
+								to={"/signup"}
+								className={({ isActive }) => (isActive ? "bg-amber-400" : "")}
+							>
+								Registration
+							</NavLink>
 						</li>
 					</ul>
 				</div>
-				<a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+				<NavLink to="/" className="btn btn-ghost normal-case text-xl">
+					Indian Chef Hunter
+				</NavLink>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
@@ -67,8 +89,12 @@ const Hader = () => {
 			</div>
 			<div className="navbar-end">
 				{user ? (
-					<div className="flex">
-						<h3 className="btn btn-outline btn-success mx-2">{user}</h3>
+					<div className="flex items-center justify-center">
+						<div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+							<div className="w-10 rounded-full mx-1">
+								<img src={user.photoURL} />
+							</div>
+						</div>
 						<NavLink
 							className="btn btn-outline btn-primary"
 							to="/"
