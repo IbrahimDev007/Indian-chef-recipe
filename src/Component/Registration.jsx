@@ -35,10 +35,14 @@ const Registration = () => {
 				.then((result) => {
 					updateUserData(result.user, username, photoUrl)
 						.then(() => {
-							setLoading(false)
-							navigate('/');
-						}
-						)
+							setLoading(false);
+							setUsername("");
+							setPhotoUrl("");
+							setEmail("");
+							setConfirmPassword("");
+
+							navigate("/");
+						})
 						.catch((err) => console.log(err.message));
 				})
 				.catch((err) => setError(err.message));
