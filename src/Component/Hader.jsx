@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Hader = () => {
-	const { logOut, user } = useContext(AuthContext);
+	const { logOut, user, setUser } = useContext(AuthContext);
+	const handlelogout = () => {
+		logOut().then(() => setUser(null));
+	};
 	return (
 		<div className="navbar bg-base-100  mb-4">
 			<div className="navbar-start">
@@ -95,13 +98,12 @@ const Hader = () => {
 								<img src={user.photoURL} />
 							</div>
 						</div>
-						<NavLink
+						<button
 							className="btn btn-outline btn-primary"
-							to="/"
-							onClick={() => logOut()}
+							onClick={handlelogout}
 						>
 							Sign Out
-						</NavLink>
+						</button>
 					</div>
 				) : (
 					<NavLink className="btn btn-outline btn-error" to="/login">

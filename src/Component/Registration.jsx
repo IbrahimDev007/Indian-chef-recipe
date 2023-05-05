@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 // import { Input, Button, Card, Form, Alert } from "daisyui";
 
@@ -10,7 +10,8 @@ const Registration = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [error, setError] = useState("");
-	const { createUser, updateUserData } = useContext(AuthContext);
+	const { createUser, updateUserData, setLoading } = useContext(AuthContext);
+	const navigate = useNavigate();
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
@@ -33,7 +34,11 @@ const Registration = () => {
 			createUser(email, password)
 				.then((result) => {
 					updateUserData(result.user, username, photoUrl)
-						.then(console.log("user update"))
+						.then(() => {
+							setLoading(false)
+							navigate('/');
+						}
+						)
 						.catch((err) => console.log(err.message));
 				})
 				.catch((err) => setError(err.message));

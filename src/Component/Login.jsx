@@ -8,7 +8,7 @@ const Login = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || "/";
-	const { googleLogin, setUser, login, SignInWithGithub } =
+	const { googleLogin, setUser, login, SignInWithGithub, setLoading } =
 		useContext(AuthContext);
 
 	const handleSubmit = (event) => {
@@ -29,6 +29,7 @@ const Login = () => {
 			.then((result) => {
 				setUser(result.user);
 				navigate(from, { replace: true });
+				setLoading(false);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -39,6 +40,8 @@ const Login = () => {
 			.then((result) => {
 				setUser(result.user);
 				navigate(from, { replace: true });
+
+				setLoading(false);
 			})
 			.catch((err) => {
 				console.log(err);

@@ -20,17 +20,16 @@ const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const unsubscribe = () => {
-			onAuthStateChanged(auth, (result) => {
-				if (result) {
-					setUser(result);
-					console.log(result);
-					setLoading(false);
-				} else {
-					setUser(null);
-				}
-			});
-		};
+		const unsubscribe = onAuthStateChanged(auth, (result) => {
+			if (result) {
+				setUser(result);
+				console.log(result);
+				setLoading(false);
+			} else {
+				setUser(null);
+				setLoading(false);
+			}
+		});
 
 		return () => {
 			unsubscribe();
@@ -76,6 +75,7 @@ const AuthProvider = ({ children }) => {
 		updateUserData,
 		loading,
 		SignInWithGithub,
+		setLoading,
 	};
 
 	return (
